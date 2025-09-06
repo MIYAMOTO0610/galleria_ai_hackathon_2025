@@ -19,6 +19,9 @@ class $AssetsImagesGen {
 
   /// Directory path: assets/images/home
   $AssetsImagesHomeGen get home => const $AssetsImagesHomeGen();
+
+  /// Directory path: assets/images/result
+  $AssetsImagesResultGen get result => const $AssetsImagesResultGen();
 }
 
 class $AssetsImagesGameGen {
@@ -63,6 +66,28 @@ class $AssetsImagesHomeGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [bg, rules, startButton, title];
+}
+
+class $AssetsImagesResultGen {
+  const $AssetsImagesResultGen();
+
+  /// File path: assets/images/result/bg.png
+  AssetGenImage get bg => const AssetGenImage('assets/images/result/bg.png');
+
+  /// File path: assets/images/result/failure.png
+  AssetGenImage get failure =>
+      const AssetGenImage('assets/images/result/failure.png');
+
+  /// File path: assets/images/result/success.png
+  AssetGenImage get success =>
+      const AssetGenImage('assets/images/result/success.png');
+
+  /// File path: assets/images/result/to_top_button.png
+  AssetGenImage get toTopButton =>
+      const AssetGenImage('assets/images/result/to_top_button.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bg, failure, success, toTopButton];
 }
 
 class Assets {

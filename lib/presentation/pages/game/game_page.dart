@@ -1,6 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
+import 'package:galleria_ai_hackathon_2025/domain/result/result.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/pages/result/result_page.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/widgets/app_scaffold.dart';
 
 class GamePage extends StatelessWidget {
@@ -111,7 +113,16 @@ class _AnswerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {}, // TODO
+      onTap: () async {
+        // TODO: 答えを送信する
+        // TODO: 結果を取得する
+        final result = Result.correct;
+        // 結果ページに遷移する
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ResultPage(result: result)),
+        );
+      }, // TODO
       child: SizedBox(
         child: Assets.images.game.answerButton.image(fit: BoxFit.cover),
       ),
