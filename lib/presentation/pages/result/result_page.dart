@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:galleria_ai_hackathon_2025/common/common.dart';
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
 import 'package:galleria_ai_hackathon_2025/domain/result/result.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
@@ -87,7 +88,7 @@ class _CorrectAnswer extends StatelessWidget {
         borderRadius: BorderRadius.circular(1000),
       ),
       child: Text(
-        'あおりんご',
+        state.question().answer,
         style: context.text.bodyMedium?.copyWith(
           fontSize: 32,
           fontWeight: FontWeight.bold,
@@ -102,7 +103,11 @@ class _Image extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 260, height: 303, child: Placeholder());
+    return SizedBox(
+      width: 260,
+      height: 303,
+      child: Image(image: state.question().image, fit: BoxFit.cover),
+    );
   }
 }
 

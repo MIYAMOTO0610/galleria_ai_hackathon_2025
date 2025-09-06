@@ -46,6 +46,14 @@ class $AssetsImagesGameGen {
   AssetGenImage get question =>
       const AssetGenImage('assets/images/game/question.png');
 
+  /// File path: assets/images/game/rainbow.png
+  AssetGenImage get rainbow =>
+      const AssetGenImage('assets/images/game/rainbow.png');
+
+  /// File path: assets/images/game/saba_no_sushi.png
+  AssetGenImage get sabaNoSushi =>
+      const AssetGenImage('assets/images/game/saba_no_sushi.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     answerButton,
@@ -53,6 +61,8 @@ class $AssetsImagesGameGen {
     frame,
     fruitRingo,
     question,
+    rainbow,
+    sabaNoSushi,
   ];
 }
 

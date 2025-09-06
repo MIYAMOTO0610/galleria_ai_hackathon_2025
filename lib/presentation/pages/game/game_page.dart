@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:galleria_ai_hackathon_2025/common/common.dart';
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
-import 'package:galleria_ai_hackathon_2025/domain/result/result.dart';
+import 'package:galleria_ai_hackathon_2025/data/result/result_repository_impl.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/pages/game/spotlight_widget.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/pages/result/result_page.dart';
@@ -19,31 +20,61 @@ class _GamePageState extends State<GamePage> {
   // 残りのスポット数
   int _spotCount = limitSpotCount;
 
+  // プレイヤーの回答
+  String _answer = '';
+
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      background: Assets.images.game.bg.image(),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 47),
-            _CountDown(spotCount: _spotCount),
-            SizedBox(height: 8),
-            _Question(),
-            SizedBox(height: 24),
-            _Image(
-              onTap: (index) {
-                setState(() {
-                  _spotCount = limitSpotCount - index - 1;
-                });
-              },
+    return Stack(
+      children: [
+        AppScaffold(
+          background: Assets.images.game.bg.image(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 47),
+                _CountDown(spotCount: _spotCount),
+                SizedBox(height: 8),
+                _Question(),
+                SizedBox(height: 24),
+                _Image(
+                  onTap: (index) {
+                    setState(() {
+                      _spotCount = limitSpotCount - index - 1;
+                    });
+                  },
+                ),
+                const SizedBox(height: 37),
+                _AnswerField(
+                  onChanged: (value) {
+                    setState(() {
+                      _answer = value;
+                    });
+                  },
+                ),
+                _AnswerButton(
+                  answer: _answer,
+                  onTap: () async {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                  },
+                ),
+              ],
             ),
-            const SizedBox(height: 37),
-            _AnswerField(),
-            _AnswerButton(),
-          ],
+          ),
         ),
-      ),
+        Positioned.fill(
+          child: _isLoading
+              ? Container(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  child: const Center(child: CircularProgressIndicator()),
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
     );
   }
 }
@@ -102,7 +133,7 @@ class _Image extends StatelessWidget {
       width: 359,
       height: 419,
       child: SpotlightGuessGame(
-        image: Assets.images.game.fruitRingo.image().image,
+        image: state.question().image,
         onTap: (index) {
           onTap(index);
         },
@@ -112,7 +143,9 @@ class _Image extends StatelessWidget {
 }
 
 class _AnswerField extends StatelessWidget {
-  const _AnswerField();
+  const _AnswerField({required this.onChanged});
+
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +154,11 @@ class _AnswerField extends StatelessWidget {
       height: 62,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
+        onChanged: onChanged,
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xFFC9CAD7),
+
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           hintText: '答えを入力',
           hintStyle: context.text.bodyMedium?.copyWith(
@@ -138,21 +173,29 @@ class _AnswerField extends StatelessWidget {
 }
 
 class _AnswerButton extends StatelessWidget {
-  const _AnswerButton();
+  const _AnswerButton({required this.answer, required this.onTap});
+
+  final VoidCallback onTap;
+
+  final String answer;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        // TODO: 答えを送信する
-        // TODO: 結果を取得する
-        final result = Result.correct;
+        if (answer.isEmpty) return;
+        onTap();
+        final result = await ResultRepositoryImpl().judgeAnswer(
+          answer: answer,
+          correct: state.question().answer,
+        );
+        if (!context.mounted) return;
         // 結果ページに遷移する
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ResultPage(result: result)),
         );
-      }, // TODO
+      },
       child: SizedBox(
         child: Assets.images.game.answerButton.image(fit: BoxFit.cover),
       ),
