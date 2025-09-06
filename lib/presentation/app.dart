@@ -1,12 +1,26 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/pages/home/home_page.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/theme.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      theme: appTheme,
+      home: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: Assets.images.bg.image().image,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+          child: HomePage(),
+        ),
+      ),
     );
   }
 }
