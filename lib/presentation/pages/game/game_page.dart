@@ -16,6 +16,8 @@ class GamePage extends StatelessWidget {
           _Question(),
           SizedBox(height: 16),
           _Image(),
+          SizedBox(height: 36),
+          _Answer(),
         ],
       ),
     );
@@ -74,5 +76,29 @@ class _Image extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(width: 330, height: 440, child: Placeholder());
+  }
+}
+
+class _Answer extends StatelessWidget {
+  const _Answer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color(0xFFC9CAD7),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          hintText: '答えを入力',
+          hintStyle: context.text.bodyMedium?.copyWith(
+            color: context.color.primary,
+            fontWeight: FontWeight.w400,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
   }
 }
