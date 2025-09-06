@@ -38,12 +38,22 @@ class $AssetsImagesGameGen {
   AssetGenImage get frame =>
       const AssetGenImage('assets/images/game/frame.png');
 
+  /// File path: assets/images/game/fruit_ringo.png
+  AssetGenImage get fruitRingo =>
+      const AssetGenImage('assets/images/game/fruit_ringo.png');
+
   /// File path: assets/images/game/question.png
   AssetGenImage get question =>
       const AssetGenImage('assets/images/game/question.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [answerButton, bg, frame, question];
+  List<AssetGenImage> get values => [
+    answerButton,
+    bg,
+    frame,
+    fruitRingo,
+    question,
+  ];
 }
 
 class $AssetsImagesHomeGen {

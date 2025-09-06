@@ -2,11 +2,22 @@
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
 import 'package:galleria_ai_hackathon_2025/domain/result/result.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/pages/game/spotlight_widget.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/pages/result/result_page.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/widgets/app_scaffold.dart';
 
-class GamePage extends StatelessWidget {
+const limitSpotCount = 3;
+
+class GamePage extends StatefulWidget {
   const GamePage({super.key});
+
+  @override
+  State<GamePage> createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
+  // 残りのスポット数
+  int _spotCount = limitSpotCount;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +27,17 @@ class GamePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 47),
-            _CountDown(),
+            _CountDown(spotCount: _spotCount),
             SizedBox(height: 8),
             _Question(),
             SizedBox(height: 24),
-            _Image(),
+            _Image(
+              onTap: (index) {
+                setState(() {
+                  _spotCount = limitSpotCount - index - 1;
+                });
+              },
+            ),
             const SizedBox(height: 37),
             _AnswerField(),
             _AnswerButton(),
@@ -32,7 +49,9 @@ class GamePage extends StatelessWidget {
 }
 
 class _CountDown extends StatelessWidget {
-  const _CountDown();
+  const _CountDown({required this.spotCount});
+
+  final int spotCount;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +68,7 @@ class _CountDown extends StatelessWidget {
           Text('残り'),
           const SizedBox(width: 4),
           Text(
-            '3',
+            '$spotCount',
             style: context.text.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 32,
@@ -73,11 +92,22 @@ class _Question extends StatelessWidget {
 }
 
 class _Image extends StatelessWidget {
-  const _Image();
+  const _Image({required this.onTap});
+
+  final ValueChanged<int> onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 359, height: 419, child: Placeholder());
+    return SizedBox(
+      width: 359,
+      height: 419,
+      child: SpotlightGuessGame(
+        image: Assets.images.game.fruitRingo.image().image,
+        onTap: (index) {
+          onTap(index);
+        },
+      ),
+    );
   }
 }
 
