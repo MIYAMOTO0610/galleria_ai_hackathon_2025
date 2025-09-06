@@ -14,7 +14,7 @@ class ResultRepositoryImpl implements ResultRepository {
     required String correct,
   }) async {
     final String prompt =
-        '以下の回答が合っているのかtrueかfalseで教えてください　<正解>$correct<回答>$answer、trueかfalse以外は返さないでください';
+        '以下の回答がだいたい同じようなものか、trueかfalseで教えてください　<正解>$correct<回答>$answer、trueかfalse以外は返さないでください';
 
     final Map<String, dynamic> body = <String, dynamic>{
       'model': 'gpt-oss:20b',
@@ -22,8 +22,8 @@ class ResultRepositoryImpl implements ResultRepository {
       'stream': false,
     };
 
-    final HttpClient client =
-        HttpClient()..connectionTimeout = const Duration(seconds: 15);
+    final HttpClient client = HttpClient()
+      ..connectionTimeout = const Duration(seconds: 15);
     final HttpClientRequest request = await client.postUrl(
       Uri.parse(_endpoint),
     );
@@ -38,8 +38,9 @@ class ResultRepositoryImpl implements ResultRepository {
     }
 
     final dynamic decoded = jsonDecode(resBody);
-    final dynamic responseValue =
-        (decoded is Map<String, dynamic>) ? decoded['response'] : null;
+    final dynamic responseValue = (decoded is Map<String, dynamic>)
+        ? decoded['response']
+        : null;
     final String text = (responseValue ?? '').toString().trim().toLowerCase();
 
     if (text == 'true') {
