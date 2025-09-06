@@ -1,14 +1,15 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/pages/game/game_page.dart';
+import 'package:galleria_ai_hackathon_2025/presentation/widgets/app_scaffold.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
+    return const AppScaffold(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _Title(),
@@ -50,6 +51,14 @@ class _StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Assets.images.home.startButton.image();
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => GamePage()),
+        );
+      },
+      child: Assets.images.home.startButton.image(),
+    );
   }
 }

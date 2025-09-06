@@ -3,6 +3,7 @@
 final appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.black,
   colorScheme: appColorScheme,
+  fontFamily: 'Hiragino Maru Gothic ProN',
   textTheme: const TextTheme(
     bodyMedium: TextStyle(fontSize: 16, color: Colors.white),
   ),
