@@ -8,14 +8,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppScaffold(
+    return AppScaffold(
+      background: Assets.images.home.bg.image(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _Title(),
           SizedBox(height: 16),
           _Rules(),
-          SizedBox(height: 32),
+          SizedBox(height: 16),
           _StartButton(),
         ],
       ),

@@ -9,6 +9,7 @@ class GamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      background: Assets.images.game.bg.image(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -14,17 +14,11 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/bg.png
-  AssetGenImage get bg => const AssetGenImage('assets/images/bg.png');
-
   /// Directory path: assets/images/game
   $AssetsImagesGameGen get game => const $AssetsImagesGameGen();
 
   /// Directory path: assets/images/home
   $AssetsImagesHomeGen get home => const $AssetsImagesHomeGen();
-
-  /// List of all assets
-  List<AssetGenImage> get values => [bg];
 }
 
 class $AssetsImagesGameGen {
@@ -33,6 +27,9 @@ class $AssetsImagesGameGen {
   /// File path: assets/images/game/answer_button.png
   AssetGenImage get answerButton =>
       const AssetGenImage('assets/images/game/answer_button.png');
+
+  /// File path: assets/images/game/bg.png
+  AssetGenImage get bg => const AssetGenImage('assets/images/game/bg.png');
 
   /// File path: assets/images/game/frame.png
   AssetGenImage get frame =>
@@ -43,11 +40,14 @@ class $AssetsImagesGameGen {
       const AssetGenImage('assets/images/game/question.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [answerButton, frame, question];
+  List<AssetGenImage> get values => [answerButton, bg, frame, question];
 }
 
 class $AssetsImagesHomeGen {
   const $AssetsImagesHomeGen();
+
+  /// File path: assets/images/home/bg.png
+  AssetGenImage get bg => const AssetGenImage('assets/images/home/bg.png');
 
   /// File path: assets/images/home/rules.png
   AssetGenImage get rules =>
@@ -62,7 +62,7 @@ class $AssetsImagesHomeGen {
       const AssetGenImage('assets/images/home/title.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [rules, startButton, title];
+  List<AssetGenImage> get values => [bg, rules, startButton, title];
 }
 
 class Assets {
