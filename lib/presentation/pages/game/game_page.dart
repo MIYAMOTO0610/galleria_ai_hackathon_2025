@@ -91,6 +91,7 @@ class _CountDown extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
       decoration: BoxDecoration(
         color: const Color(0xff001035),
+        border: Border.all(color: const Color(0xFF807867), width: 4),
         borderRadius: BorderRadius.circular(1000),
       ),
       child: Row(
