@@ -17,11 +17,33 @@ class $AssetsImagesGen {
   /// File path: assets/images/bg.png
   AssetGenImage get bg => const AssetGenImage('assets/images/bg.png');
 
+  /// Directory path: assets/images/game
+  $AssetsImagesGameGen get game => const $AssetsImagesGameGen();
+
   /// Directory path: assets/images/home
   $AssetsImagesHomeGen get home => const $AssetsImagesHomeGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [bg];
+}
+
+class $AssetsImagesGameGen {
+  const $AssetsImagesGameGen();
+
+  /// File path: assets/images/game/answer_button.png
+  AssetGenImage get answerButton =>
+      const AssetGenImage('assets/images/game/answer_button.png');
+
+  /// File path: assets/images/game/frame.png
+  AssetGenImage get frame =>
+      const AssetGenImage('assets/images/game/frame.png');
+
+  /// File path: assets/images/game/question.png
+  AssetGenImage get question =>
+      const AssetGenImage('assets/images/game/question.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [answerButton, frame, question];
 }
 
 class $AssetsImagesHomeGen {

@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
+import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/widgets/app_scaffold.dart';
 
 class GamePage extends StatelessWidget {
@@ -7,17 +8,18 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppScaffold(
+    return AppScaffold(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _CountDown(),
-          SizedBox(height: 32),
+          SizedBox(height: 8),
           _Question(),
-          SizedBox(height: 16),
+          SizedBox(height: 24),
           _Image(),
-          SizedBox(height: 36),
-          _Answer(),
+          const SizedBox(height: 37),
+          _AnswerField(),
+          _AnswerButton(),
         ],
       ),
     );
@@ -30,6 +32,7 @@ class _CountDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
       decoration: BoxDecoration(
         color: const Color(0xFF001E65),
@@ -60,13 +63,7 @@ class _Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'これは何？',
-      style: context.text.bodyMedium?.copyWith(
-        fontWeight: FontWeight.w400,
-        fontSize: 32,
-      ),
-    );
+    return Assets.images.game.question.image(width: 238, height: 69);
   }
 }
 
@@ -75,16 +72,18 @@ class _Image extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 330, height: 440, child: Placeholder());
+    return SizedBox(width: 359, height: 419, child: Placeholder());
   }
 }
 
-class _Answer extends StatelessWidget {
-  const _Answer();
+class _AnswerField extends StatelessWidget {
+  const _AnswerField();
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 382,
+      height: 62,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
         decoration: InputDecoration(
@@ -98,6 +97,20 @@ class _Answer extends StatelessWidget {
             fontSize: 20,
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AnswerButton extends StatelessWidget {
+  const _AnswerButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {}, // TODO
+      child: SizedBox(
+        child: Assets.images.game.answerButton.image(fit: BoxFit.cover),
       ),
     );
   }
