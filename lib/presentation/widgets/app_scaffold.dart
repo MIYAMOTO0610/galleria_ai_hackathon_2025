@@ -14,6 +14,7 @@ class AppScaffold extends StatelessWidget {
       ),
       child: SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
           backgroundColor: Colors.transparent,
           body: Center(child: child),
         ),

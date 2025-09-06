@@ -10,18 +10,20 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       background: Assets.images.game.bg.image(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _CountDown(),
-          SizedBox(height: 8),
-          _Question(),
-          SizedBox(height: 24),
-          _Image(),
-          const SizedBox(height: 37),
-          _AnswerField(),
-          _AnswerButton(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 47),
+            _CountDown(),
+            SizedBox(height: 8),
+            _Question(),
+            SizedBox(height: 24),
+            _Image(),
+            const SizedBox(height: 37),
+            _AnswerField(),
+            _AnswerButton(),
+          ],
+        ),
       ),
     );
   }
@@ -36,7 +38,7 @@ class _CountDown extends StatelessWidget {
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFF001E65),
+        color: const Color(0xff001035),
         borderRadius: BorderRadius.circular(1000),
       ),
       child: Row(
