@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:galleria_ai_hackathon_2025/common/common.dart';
 import 'package:galleria_ai_hackathon_2025/common/extensions/context_extension.dart';
+import 'package:galleria_ai_hackathon_2025/domain/game_state/game_state.dart';
 import 'package:galleria_ai_hackathon_2025/domain/result/result.dart';
 import 'package:galleria_ai_hackathon_2025/gen/assets.gen.dart';
 import 'package:galleria_ai_hackathon_2025/presentation/widgets/app_scaffold.dart';
@@ -118,6 +119,7 @@ class _ToTopButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        state = GameState.q2;
         Navigator.popUntil(context, (route) => route.isFirst);
       },
       child: SizedBox(

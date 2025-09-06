@@ -155,6 +155,7 @@ class _AnswerField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
         onChanged: onChanged,
+        style: context.text.bodyMedium?.copyWith(color: context.color.primary),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xFFC9CAD7),
